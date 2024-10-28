@@ -2,7 +2,7 @@ name: Update Instagram Feed Gist
 
 on:
   schedule:
-    - cron: "0 0 * * *" # Run once a day at midnight
+    - cron: "0 0 */3 ? * *" # every 3 hours
   workflow_dispatch:
 
 jobs:
