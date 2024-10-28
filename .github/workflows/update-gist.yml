@@ -22,12 +22,9 @@ jobs:
 
       - name: Update Gist with JSON
         env:
-          GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
           GIST_ID: ${{ vars.GIST_ID }}
         run: |
           CONTENT=$(cat feed.json | jq -c .)
-          echo "Updating Gist with content: $CONTENT"  # Debugging line
           curl -X PATCH \
-            -H "Authorization: token $GIST_TOKEN" \
             -d "{\"files\": {\"instafeed.json\": {\"content\": $(echo "$CONTENT" | jq -R .)}}}" \
             https://api.github.com/gists/$GIST_ID
